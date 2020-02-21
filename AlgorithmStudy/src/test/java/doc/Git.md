@@ -28,7 +28,7 @@ git log ：列出提交历史
 
 git push ：把本地提交上传到中央 
 
-git push --set-upstream origin 分支名：将新的分支上传到远程仓库
+git push --set-upstream origin 分支名：将新的分支上传到远程仓库,与远程分支建立联系
 
 git branch  名称：创建一个枝干
 
@@ -42,6 +42,7 @@ git checkout -d 分支名 ：删除分支，1.head所指向的分支不能被删
 
  
 
+<<<<<<< HEAD
 ###Git原理
 Head 永远指向当前工作目录所对应的最新一次commit，一个引用
 
@@ -63,6 +64,9 @@ git rm -cached【file】
 git commit -m"gitignore提交删除idea"，git push origin master
 
 
+=======
+最佳练习
+>>>>>>> parent of 938bd84... test
 
 
 
