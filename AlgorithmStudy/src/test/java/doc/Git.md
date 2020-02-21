@@ -28,7 +28,24 @@ git log ：列出提交历史
 
 git push ：把本地提交上传到中央
 
-最佳练习
+###Git原理
+
+
+
+###Git 常见问题
+删除git管理的文件，并将这次删除放入暂存区
+
+git rm 【filename】
+
+停止追踪指定文件，但该文件会保留在工作区
+
+git rm -cached【file】
+
+若是idea编辑器需要将需要不追踪的文件添加进入.gitignore
+,在使用git rm -cacth -r filename,将git add .gitignore
+git commit -m"gitignore提交删除idea"，git push origin master
+
+
 
 
 
