@@ -42,7 +42,7 @@ git checkout -d 分支名 ：删除分支，1.head所指向的分支不能被删
 
  
 
-<<<<<<< HEAD
+
 ###Git原理
 Head 永远指向当前工作目录所对应的最新一次commit，一个引用
 
@@ -64,9 +64,9 @@ git rm -cached【file】
 git commit -m"gitignore提交删除idea"，git push origin master
 
 
-=======
+
 最佳练习
->>>>>>> parent of 938bd84... test
+
 
 
 
