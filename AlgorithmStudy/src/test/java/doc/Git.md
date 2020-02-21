@@ -26,11 +26,28 @@ git commit ：将代码提交到本地仓库
 
 git log ：列出提交历史
 
-git push ：把本地提交上传到中央
+git push ：把本地提交上传到中央 
+
+git push --set-upstream origin 分支名：将新的分支上传到远程仓库
+
+git branch  名称：创建一个枝干
+
+git checkout 分支名 ：切换到某一个分支
+
+git checkout -b 分支名 ：创建并切换分支
+
+git checkout -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit 3.没有被合并到master上的branch不能被删除
+
+
+
+ 
 
 ###Git原理
-Head 永远指向当前工作目录所对应的commit
+Head 永远指向当前工作目录所对应的最新一次commit，一个引用
 
+master 主干，一个引用
+
+branch 一个commit所指向的内容，所有branch都是平等的，一个引用
 
 ###Git 常见问题
 删除git管理的文件，并将这次删除放入暂存区
