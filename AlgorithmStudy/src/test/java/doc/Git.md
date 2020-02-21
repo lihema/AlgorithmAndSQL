@@ -32,11 +32,13 @@ git push --set-upstream origin 分支名：将新的分支上传到远程仓库,
 
 git branch  名称：创建一个枝干
 
+git branch -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit 3.没有被合并到master上的branch不能被删除
+
 git checkout 分支名 ：切换到某一个分支
 
 git checkout -b 分支名 ：创建并切换分支
 
-git checkout -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit 3.没有被合并到master上的branch不能被删除
+
 
 
 
