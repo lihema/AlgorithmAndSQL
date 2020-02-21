@@ -29,7 +29,7 @@ git log ：列出提交历史
 git push ：把本地提交上传到中央
 
 ###Git原理
-Head 永远指向当前工作目录最新的commit
+Head 永远指向当前工作目录所对应的commit
 
 
 ###Git 常见问题
