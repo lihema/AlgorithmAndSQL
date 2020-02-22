@@ -45,7 +45,7 @@ git reflog :打印所有引用的操作
 
 git remote prune origin : 删除远程分支不存在的分支
 
-git merge 分支名
+
 
  
 
@@ -83,7 +83,7 @@ git commit -m"gitignore提交删除idea"，git push origin master
 解决冲突
 
 
-head为当前commit的内容，下方会有merge branch的内容，手动决定保留哪个，解决完成后执行commit，adasdad
+head为当前commit的内容，下方会有merge branch的内容，手动决定保留哪个，解决完成后执行commit，
 
 
 
