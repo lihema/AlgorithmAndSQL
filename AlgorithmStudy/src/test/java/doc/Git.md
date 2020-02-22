@@ -37,7 +37,7 @@ git branch  名称：创建一个枝干
 git branch -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit
  3.没有被合并到master上的branch不能被删除 删除之后别的同事依然可以看到分支需要执行git remote prune origin
 
-git checkout 分支名 ：切换到某一个分支
+git checkout 分支名 ：切换到某一个分支 下载下来一个分支
 
 git checkout -b 分支名 ：创建并切换分支
 
@@ -45,8 +45,13 @@ git reflog :打印所有引用的操作
 
 git remote prune origin : 删除远程分支不存在的分支
 
+git merge 分支名 ：合并分支
 
+git rebase 分支名 ：合并分支但是没有历史分叉，他会把其他分支的commit按照顺序在提交到分支名对应的分支，默认checkout的分支，消除分支
 
+git rebase -i HARD^^/~~ ：
+
+git reset --hard HEAD^ :往回退1个  ^的个数指退几个 ~是前进几个
  
 
 
@@ -66,6 +71,13 @@ merge从目标commit和当前commit分叉的位置起，把目标commit路径上
 冲突A和B同时更改了同一行，会导致冲突发生
 
 ###Git 常见问题
+
+创建一个分支
+
+git checkout -b 分支名 ：创建并切换分支
+
+git push --set-upstream origin 分支名
+
 删除git管理的文件，并将这次删除放入暂存区
 
 git rm 【filename】
@@ -82,8 +94,57 @@ git commit -m"gitignore提交删除idea"，git push origin master
 
 解决冲突
 
+head为当前commit的内容，下方会有merge branch的内容，手动决定保留哪个，解决完成后执行commit
 
-head为当前commit的内容，下方会有merge branch的内容，手动决定保留哪个，解决完成后执行commit，
+冲突的两种情况
+
+1：head领先于commit的内容，什么都不做
+
+2：merge 一个领先于当前head的分支会同步到最新的commit
+
+完整的一次分支开发
+
+git checkout -b 分支名
+
+git push --set-upstream origin 分支名
+
+同事操作
+
+git pull 
+
+git checkout 分支名 ：进行确认看看有没有问题若无意见
+
+git checkout master
+
+git pull ：merge 之前一定pull让master保证最新
+
+git merge 分支名
+
+git push
+
+git branch -d 分支名 ：删除本地仓库分支
+
+git push origin -d 分支名
+
+如有意见checkout后去修改，直到无意间在执行剩下
+
+rebase操作
+
+git checkout 分支名
+
+git rebase master 将分支切换点换成分支最新的commit，在其后面添加master与分支分开后面的节点，消除分支，但是master还指向之前的commit，需要保证提交顺序的一致
+
+git checkout mater
+
+git merge 分支名 ：这个操作可以避免丢失commit
+
+
+修改commit中错误的内容
+
+git add 修改后的内容
+
+git commit --amend git会再刚提交的错误commit中加上新的内容形成一个commit
+
 
 
 
