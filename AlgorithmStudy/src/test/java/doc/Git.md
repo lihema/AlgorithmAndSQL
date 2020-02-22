@@ -60,6 +60,11 @@ branch 一个commit所指向的内容，所有branch都是平等的，一个引�
 push本质把当前branch的位置上传到远端仓库，并把它路径上的commit一并上传，git push不加origin 分支参数时只能上传之前从远端clone下来或者pull下来的
 内容，如果本地新建的分支需要上传到指定仓库需要加远程仓库名
 
+merge从目标commit和当前commit分叉的位置起，把目标commit路径上的所有commit一并应用到当前commit，生成一个新的commit，merge操作会帮你自动简要
+填写提交的信息，merge完成后是完成commit的，检查无误后可以直接push
+
+冲突A和B同时更改了同一行，会导致冲突发生
+
 ###Git 常见问题
 删除git管理的文件，并将这次删除放入暂存区
 
@@ -72,6 +77,14 @@ git rm -cached【file】
 若是idea编辑器需要将需要不追踪的文件添加进入.gitignore
 ,在使用git rm -cacth -r filename,将git add .gitignore
 git commit -m"gitignore提交删除idea"，git push origin master
+
+冲突 当两个分支都修改了同一个文件的同一行代码就会出现冲突
+
+解决冲突
+
+
+head为当前commit的内容，下方会有merge branch的内容，手动决定保留哪个，解决完成后执行commit，
+
 
 
 
