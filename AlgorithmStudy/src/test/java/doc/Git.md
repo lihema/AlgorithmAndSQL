@@ -45,7 +45,7 @@ git reflog :打印所有引用的操作
 
 git remote prune origin : 删除远程分支不存在的分支
 
-
+git merge 分支名
 
  
 
