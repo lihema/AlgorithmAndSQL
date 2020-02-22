@@ -30,15 +30,20 @@ git push ：把本地提交上传到中央
 
 git push --set-upstream origin 分支名：将新的分支上传到远程仓库,与远程分支建立联系
 
+git push origin 枝干名 ：上传远端仓库
+
 git branch  名称：创建一个枝干
 
-git branch -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit 3.没有被合并到master上的branch不能被删除
+git branch -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit
+ 3.没有被合并到master上的branch不能被删除 删除之后别的同事依然可以看到分支需要执行git remote prune origin
 
 git checkout 分支名 ：切换到某一个分支
 
 git checkout -b 分支名 ：创建并切换分支
 
+git reflog :打印所有引用的操作
 
+git remote prune origin : 删除远程分支不存在的分支
 
 
 
@@ -46,11 +51,14 @@ git checkout -b 分支名 ：创建并切换分支
 
 
 ###Git原理
-Head 永远指向当前工作目录所对应的最新一次commit，一个引用
+Head 永远指向当前工作目录所对应的最新一次commit，一个引用，远程仓库的head永远指向master分支
 
 master 主干，一个引用
 
 branch 一个commit所指向的内容，所有branch都是平等的，一个引用
+
+push本质把当前branch的位置上传到远端仓库，并把它路径上的commit一并上传，git push不加origin 分支参数时只能上传之前从远端clone下来或者pull下来的
+内容，如果本地新建的分支需要上传到指定仓库需要加远程仓库名
 
 ###Git 常见问题
 删除git管理的文件，并将这次删除放入暂存区
