@@ -32,6 +32,8 @@ git push --set-upstream origin 分支名：将新的分支上传到远程仓库,
 
 git push origin 枝干名 ：上传远端仓库
 
+git push origin 分支名 -f ：删除某次commit后远程与本地不相同后需要执行强制上传
+
 git branch  名称：创建一个枝干
 
 git branch -d 分支名 ：删除分支，1.head所指向的分支不能被删除，branch只是一个引用 2.删除这个branch不会删除任何commit
@@ -47,12 +49,13 @@ git remote prune origin : 删除远程分支不存在的分支
 
 git merge 分支名 ：合并分支
 
-git rebase 分支名 ：合并分支但是没有历史分叉，他会把其他分支的commit按照顺序在提交到分支名对应的分支，默认checkout的分支，消除分支
+git rebase 分支名 ：合并分支使之没有历史分叉，他会把其他分支的commit按照顺序在提交到分支名对应的分支，默认checkout的分支，消除分支
 
-git rebase -i HARD^^/~~ ：
+git rebase -i HARD^^/~~ ：选取到某一次commit 进行操作，直接更改最上方pick命令即可
 
-git reset --hard HEAD^ :往回退1个  ^的个数指退几个 ~是前进几个
+git reset --hard HEAD^/commit名 :往回退1个  ^的个数指退几个 ~是前进几个，commit名直接，多用于删除一串commit
  
+git revert 分支名
 
 
 ###Git原理
@@ -132,7 +135,7 @@ rebase操作
 
 git checkout 分支名
 
-git rebase master 将分支切换点换成分支最新的commit，在其后面添加master与分支分开后面的节点，消除分支，但是master还指向之前的commit，需要保证提交顺序的一致
+git rebase master 将分支切换点换成分支最新的commit，在其后面添加master与分支分开后面的节点，消除分支，但是master还指向之前的commit，需要保证提交顺序的一致,若想执行rebase命令需要提交最新修改
 
 git checkout mater
 
@@ -143,9 +146,11 @@ git merge 分支名 ：这个操作可以避免丢失commit
 
 git add 修改后的内容
 
-git commit --amend git会再刚提交的错误commit中加上新的内容形成一个commit
+git commit --amend git会再刚撤销提交的错误commit，并在其中加上新的内容形成一个commit
 
+代码已经push才发现有错
 
+1.出错在本地
 
 
 
