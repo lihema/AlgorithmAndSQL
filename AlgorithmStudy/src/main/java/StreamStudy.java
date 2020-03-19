@@ -5,8 +5,11 @@
  */
 
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamStudy {
 
@@ -20,15 +23,56 @@ public class StreamStudy {
             return  skuList;
         }
 
+       public static List<String> initStringDate(){
+        List<String> skuList = new ArrayList<String>();
+        for (int i = 0; i <100 ; i++) {
+            skuList.add(String.valueOf(i));
+        }
+        return  skuList;
+    }
+
         public Long countSku(){
             Long count=initDate().stream().count();
             System.out.println(count);
             return count;
         }
 
+    /**
+     * 输出流
+     * @param title
+     * @param stream
+     * @param <T>
+     */
+        public static <T> void show(String title,Stream<T> stream){
+            final int SIZE = 0;
+            List<T> firstElements = stream.limit(SIZE+1).collect(Collectors.toList());
+            System.out.println(title + ":");
+            for (int i = 0; i <firstElements.size() ; i++) {
+                if(i<SIZE){
+                    System.out.println(firstElements.get(i));
+                }else {
+                    System.out.println("....");
+                }
+                System.out.println();
+            }
+        }
+
         public static void main(String[] args) {
             StreamStudy streamTest=new StreamStudy();
             streamTest.countSku();
+            Integer[] skuArray = new Integer[]{1,2,3,4,5,6};
+            Stream<Integer> skuArrayStream = Stream.of(skuArray);
+            show("Array",skuArrayStream);
+            Stream<String> lijishu = Stream.generate(()->"lijishu");
+            show("lijishu",lijishu);
+            Stream<Double> random = Stream.generate(Math::random);
+            show("random",random);
+           Stream<BigInteger>integerStream = Stream.iterate(BigInteger.ZERO,n->n.add(BigInteger.ONE));
+            show("integerStream",integerStream);
+            Stream<String> mapperTest = initStringDate().stream().map(String::toLowerCase);
+            Stream<String> mapperTest2 = initStringDate().stream().map(s -> s+"lijishu");
+
+
         }
     }
 
