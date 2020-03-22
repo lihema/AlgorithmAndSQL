@@ -148,9 +148,25 @@ git add 修改后的内容
 
 git commit --amend git会再刚撤销提交的错误commit，并在其中加上新的内容形成一个commit
 
-代码已经push才发现有错
+本地项目传到git上
 
-1.出错在本地
+1.git init
+
+2.git add .
+
+3.git commit -m""fitst commit"
+
+4.git remote add origin 远程地址
+
+5.git pull --rebase origin 分支名
+
+6.git push -u origin 分支名
+
+7.git ststus
+
+切换远程仓库
+
+git remote set-url origin 远程仓库地址 
 
 
 
