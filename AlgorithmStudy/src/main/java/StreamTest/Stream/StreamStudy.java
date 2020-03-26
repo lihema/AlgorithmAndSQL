@@ -1,9 +1,11 @@
-/**
+package StreamTest.Stream; /**
  * @author lijishu
  * @date 2020/3/4 3:28 下午
  * @content:
  */
 
+
+import jdk.internal.dynalink.beans.StaticClass;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class StreamStudy {
 
 
 
-        public List<Integer> initData(){
+        public static List<Integer>  initData(){
             List<Integer> skuList = new ArrayList<Integer>();
             for (int i = 0; i <100 ; i++) {
                 skuList.add(i);
@@ -42,6 +44,11 @@ public class StreamStudy {
             }
         }
         return  skuList;
+    }
+
+    public static Integer add(Integer q){
+            q++;
+            return q;
     }
 
         public Long countSku(){
@@ -71,29 +78,33 @@ public class StreamStudy {
         }
 
         public static void main(String[] args) {
-            StreamStudy streamTest=new StreamStudy();
-            //streamTest.countSku();
-           List<String> initStringData = streamTest.initStringData();
-            Optional<String> largest = initStringData.stream().max(String::compareToIgnoreCase);
-           // System.out.println(largest);
-
-           // Optional<String> startWithQ = initStringData.stream().filter(s -> s.startsWith("Q")).findFirst();
-
-            Optional<String> startWithQ = initStringData.stream().parallel().filter(s -> s.startsWith("Q")).findAny();
-
-            System.out.println(startWithQ);
-            streamTest.countSku();
-            Integer[] skuArray = new Integer[]{1,2,3,4,5,6};
-            Stream<Integer> skuArrayStream = Stream.of(skuArray);
-            show("Array",skuArrayStream);
-            Stream<String> lijishu = Stream.generate(()->"lijishu");
-            show("lijishu",lijishu);
-            Stream<Double> random = Stream.generate(Math::random);
-            show("random",random);
-           Stream<BigInteger>integerStream = Stream.iterate(BigInteger.ZERO,n->n.add(BigInteger.ONE));
-            show("integerStream",integerStream);
-            Stream<String> mapperTest = initStringDate().stream().map(String::toLowerCase);
-            Stream<String> mapperTest2 = initStringDate().stream().map(s -> s+"lijishu");
+//            StreamTest.Stream.StreamStudy streamTest=new StreamTest.Stream.StreamStudy();
+//            //streamTest.countSku();
+//           List<String> initStringData = streamTest.initStringData();
+//            Optional<String> largest = initStringData.stream().max(String::compareToIgnoreCase);
+//           // System.out.println(largest);
+//
+//           // Optional<String> startWithQ = initStringData.stream().filter(s -> s.startsWith("Q")).findFirst();
+//
+//            Optional<String> startWithQ = initStringData.stream().parallel().filter(s -> s.startsWith("Q")).findAny();
+//
+//            System.out.println(startWithQ);
+//            streamTest.countSku();
+//            Integer[] skuArray = new Integer[]{1,2,3,4,5,6};
+//            Stream<Integer> skuArrayStream = Stream.of(skuArray);
+//            show("Array",skuArrayStream);
+//            Stream<String> lijishu = Stream.generate(()->"lijishu");
+//            show("lijishu",lijishu);
+//            Stream<Double> random = Stream.generate(Math::random);
+//            show("random",random);
+//           Stream<BigInteger>integerStream = Stream.iterate(BigInteger.ZERO,n->n.add(BigInteger.ONE));
+//            show("integerStream",integerStream);
+//            Stream<String> mapperTest = initStringDate().stream().map(String::toLowerCase);
+//            Stream<String> mapperTest2 = initStringDate().stream().map(s -> s+"lijishu");
+//            Object[] powers = Stream.iterate(1.0,p->p*2).peek(e-> System.out.println("Fetching"+e)).limit(20).toArray();
+//            for (Object a:powers) {
+//                System.out.println(a.toString());
+//            }
 
 
         }

@@ -47,16 +47,16 @@ Stream<Double> random = Stream.generate(Math::random);
 
 Stream.iterate(BigInteger.ZERO,n->n.add(BigInteger.ONE));f(f(seed))
 
-###流的filter，map，flatMap（在stream（）之后使用）
+##流的filter，map，flatMap（在stream（）之后使用）
 Stream<T>filter(Predicate<? super T> predicate) filter会产生一个新的流，它的元素与某种条件匹配,Predicate是一个可以接受参数的判断接口对象，用于判断
 流元素是否满足某一条件
 
-<R> Stream<R> map(Fuction<? super T,? extend R>mapper) 产生一个流，将当前流中的结果通过Mapper转换产生的结果。
+`<R> Stream<R> map(Fuction<? super T,? extend R>mapper)` 产生一个流，将当前流中的结果通过Mapper转换产生的结果。
 
-<R> Stream<R> flatMap(Function<? super T,? extend Stream<? extend Stream<? extends R>> mapper) 产生一个流它通过将mapper应用于
+`<R> Stream<R> flatMap(Function<? super T,? extend Stream<? extend Stream<? extends R>> mapper)` 产生一个流它通过将mapper应用于
 当前流中的子流元素，（当前流指list），最后将许多子流拼成一个流作为结果，mapper是应用到子流的转换函数
 
-###抽取子流和连接流
+##抽取子流和连接流
 
 1.Stream.limit(Long N) 对无限流进行操作，返回一个含有前n元素的新流
 
@@ -64,17 +64,15 @@ Stream<T>filter(Predicate<? super T> predicate) filter会产生一个新的流�
 
 3.Stream.concat(stream 1,stresm2) 将两个流连接到一起
 
-###其他的流转换
+##其他的流转换
 
 Stream<T> distinct() 产生一个流，去掉当前流中重复的元素
 
+Stream<T> sorted()
 
+Stream<T> sorted(Comparator<? super T>comparator)产生一个流他的元素是当前流中的所有元素按照顺序排列的。
 
-
-
-
-
-
+Stream<T> peek(Consumer<? super T>action) 产生一个流，它与当前流中元素相同，在获取每个元素时，会将其传递给action
 
 
 
@@ -94,7 +92,7 @@ Optional<T> findAny()
 
 分别产生这个流的第一个和任意一个元素，如果这个流为空，会产生一个空的Optional对象
 
-boolean anyMatch(Predicate<? super T> predicate)
+boolean anyMatch(Predicate<? super T> predicate) [predicate 一个匹配条件]
 
 boolean allMatch(Predicate<? super T> predicate)
 
@@ -109,5 +107,42 @@ Optional<T>对象是一种包装器对象,核心作用是在值不存在的时�
 
 T orElse(T other)  产生这个Optional的值，或者在该Optional为空时，产生other
 
-T orElseGet(Supplier<? extends T>other)
+T orElseGet(Supplier<? extends T>other)产生这个Optional值，或者在Optional为空时，产生调用other的结果（无参有返回值操作结果）
+
+`<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)` 产生这个Optional的值，或者在该Optional为空时抛出调用exceptionSupplier的结果
+
+`void ifPresent（Consumer<? super T> consumer）`如果Optional不为空，那么就将它的值传递给consumer(有参无返回值)
+
+`<U> Optional <U> map(Function<? super T,? extends U> mapper)`产生将该Optional的值传递给mapper后的结果，只要这个Optional不为空且结果不为null，否则产生一个空Optional
+
+##不适合使用Optional类型的方式
+
+T get() 产生optional的值或者返回一个异常
+
+boolean isPresent() 判断是否存在
+
+这个方法不推荐使用，因为没有意义，Optional核心是不存在值时自动处理
+
+
+##创建Optional的值
+
+static <T> Optional<T> of(T value)
+
+static <T> Optional<T> ofNullable() 
+
+产生一个具有给定值的Optional,如果value为null，第一个方法会抛出NullPointerException对象，而第二个方法会产生一个空的Optional
+
+static <T> Optional<T> empty() 产生一个空的Optional对象
+
+`<U> Optional <U> flatMap(Fuction<? super T,Optional<U> mapper)有一个可以产生Optional<T>` 
+
+对象的方法f,并且目标类型T具有一个可以产生`Optional<U>`的方法g。f().g()没法执行，可以使用flatMAp()来做转换，将Optional(T)转换成T
+f().flatmap(T::g),产生将mapper应用于当前Optional值所产生的结果，或者在当前Optional为空时，返回一个空的Optional
+
+
+
+
+
+
+
 
