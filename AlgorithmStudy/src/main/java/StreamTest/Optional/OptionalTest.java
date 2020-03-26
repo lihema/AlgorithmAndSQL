@@ -75,6 +75,12 @@ public class OptionalTest {
 
         System.out.println(invert(4.0).flatMap(OptionalTest::squareRoot));
 
+        System.out.println(invert(-4.0).flatMap(OptionalTest::squareRoot));
+
+        System.out.println(invert(0.0).flatMap(OptionalTest::squareRoot));
+
+
+
     }
 
 }
