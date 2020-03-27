@@ -139,6 +139,27 @@ static <T> Optional<T> empty() 产生一个空的Optional对象
 对象的方法f,并且目标类型T具有一个可以产生`Optional<U>`的方法g。f().g()没法执行，可以使用flatMAp()来做转换，将Optional(T)转换成T
 f().flatmap(T::g),产生将mapper应用于当前Optional值所产生的结果，或者在当前Optional为空时，返回一个空的Optional
 
+##收集结果
+
+void forEach(Consumer<? super T> action)在流的每个元素上调用action，是一种终结操作，但是在并行流中无法保证访问元素顺序，此时可以使用
+Iterator<T> iterator()这种迭代器来输出流的内容。
+
+Object[] toArray()
+
+`<A> A[] toArray(IntFunction<A[]> generator)`
+
+产生一个数组对象，第二个需在参数中传入一个构造器 A[]::new ,可以返回一个A类型的数组
+
+<R,A>collect(Collector<? super T,A,R> collector),使用给定的收集器来收集当前流中的元素，Collectors类中有用于多种收集器的工厂方法
+
+static <T> Collector<T,?,List<T>> toList
+
+static <T> Collector<T,?,Set<T>> toSet
+
+产生一个将元素收集到列表或集中的收集器
+
+
+
 
 
 
