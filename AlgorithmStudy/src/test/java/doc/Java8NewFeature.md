@@ -158,6 +158,49 @@ static <T> Collector<T,?,Set<T>> toSet
 
 产生一个将元素收集到列表或集中的收集器
 
+static <T,C extends Collection<T> Collector<T,?,C> toCollection(Supplier<C> collectionFactory)
+
+产生一个将元素收集到任意集合中的收集器，可以传递一个诸如TreeSet：：new的构造器引用
+
+static Collector<CharSequence,?,String> joining()
+
+static Collector<CharSequence,?,String> joining(CharSequence delimiter) 
+
+static Collector<CharSequence,?,String> joining(CharSequence delimiter,CharSequence prefix,CharSequence suffix) 
+
+产生一个连接字符串的收集器，delimiter为拼接时的分隔符，prefix为第一个字符串之前的前缀，suffix为最后一个字符串之间的后缀
+
+static <T> Collector<T,?,IntSummaryStatistics> summarizingInt(ToIntFunction<? super T>mapper)
+
+static <T> Collector<T,?,LongSummaryStatistics> summarizingLong(ToIntFunction<? super T>mapper)
+
+static <T> Collector<T,?,DoubleSummaryStatistics> summarizingDouble(ToIntFunction<? super T>mapper)
+
+产生一个SummaryStatistics结果收集器，通过mapper应用于每个元素后所产生的结果进行统计
+
+long getCount()
+
+产生汇总后的元素个数
+
+ (int|Long|double) getSum()
+ 
+ 产生汇总后的元素的总和，在没有任何元素时返回0
+ 
+ double getAverage()
+ 
+ 产生汇总后的元素的平均值，在没有任何元素时返回0
+ 
+ (int|Long|double) getMax()
+ 
+ (int|Long|double) getMin()
+ 
+ 产生汇总后元素的最大值和最小值，当没有任何值时产生（Integer|Long|Double).(Min|Max)_VALUE
+ 
+ 
+ ##收集到映射中
+ 
+ collect(Collector.toMap(KeyMapper,))
+
 
 
 
