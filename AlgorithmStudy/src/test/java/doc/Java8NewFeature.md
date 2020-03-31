@@ -198,8 +198,33 @@ long getCount()
  
  
  ##收集到映射中
- 
- collect(Collector.toMap(KeyMapper,))
+```` 
+static<T,K,U,M extends Map<K,U> Collector<T,?,M> toMap(Fuction<? super T,? extends K> keyMapper,Fuction<? super T,? extends K> valueMapper,
+BinaryOperator<U> mergeFunction,Supplier<M> mapSupplier)
+
+static<T,K,U,M extends ConcurentMap<K,U> Collector<T,?,M> toConcurentMap(Fuction<? super T,? extends K> keyMapper,Fuction<? super T,? extends K> valueMapper,
+BinaryOperator<U> mergeFunction,Supplier<M> mapSupplier)
+````
+
+产生一个收集器，产生一个映射表或者并发映射表，keyMapper和valueMapper函数用于将流中的元素映射成映射表中的一个键/值项，产生相同的键时会产生IllegalStateException异常,可以使用mergeFunction
+函数来处理相同的键值，mapSupplier可以提供一个期望的映射表实例
+
+
+##群组和分区
+
+static<T,K> Collector<T,?,Map<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier) 
+
+static<T,K> Collector<T,?,ConcurrentMap<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier) 
+
+产生一个收集器，它会产生一个映射表或并发映射表，其键是将classifier 应用于所有收集到的元素上所产生的结果，而值是由具有相同键元素构成的一个个列表
+
+static <T> Collector<T,?,Map<Boolean,List<T>>> partitioningBy(Predicate<? super T> predicate)
+产生一个收集器，它会产生一个映射表，其键值是true\false,而值是由满足/不满足断言的元素构成的列表 
+
+
+##下游收集器
+
+
 
 
 
