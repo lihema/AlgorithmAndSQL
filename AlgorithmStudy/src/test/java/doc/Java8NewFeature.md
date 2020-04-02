@@ -37,7 +37,7 @@
 2.Stream.empty()创建一个不包含任何元素的流
 
 3.Stream.generate(Supplier<T> s)产生一个无限流，它的值是通过反复调用函数S构建的，Supplier<T> s是一个无需参数的函数式接口，
-类似于一个承载方法的容器，使用get()方法就会执行一次函数
+类似于一个承载方法的容器，使用get()方法就会执行一次函数[Supplier用来创建]
 
 Stream.generate(()->"lijishu");
 
@@ -72,7 +72,7 @@ Stream<T> sorted()
 
 Stream<T> sorted(Comparator<? super T>comparator)产生一个流他的元素是当前流中的所有元素按照顺序排列的。
 
-Stream<T> peek(Consumer<? super T>action) 产生一个流，它与当前流中元素相同，在获取每个元素时，会将其传递给action
+Stream<T> peek(Consumer<? super T>action) 产生一个流，它与当前流中元素相同，在获取每个元素时，会将其传递给action,执行一下action
 
 
 
@@ -82,7 +82,7 @@ Stream<T> peek(Consumer<? super T>action) 产生一个流，它与当前流中�
 
 Optional<T> max(Comparator<? super T> comparator) 
 
-Optional<T> max(Comparator<? super T> comparator) 
+Optional<T> min(Comparator<? super T> comparator) 
 
 根据比较器产生一个Optional对象的。此对象中装着这个流的最大元素和最小元素（都是对流对象的操作），流为空返回一个空的Optional对象
 
@@ -223,6 +223,39 @@ static <T> Collector<T,?,Map<Boolean,List<T>>> partitioningBy(Predicate<? super 
 
 
 ##下游收集器
+
+static<T> Collector<T,?,Long>counting()
+
+产生一个收集元素进行计数的收集器
+
+static<T>Collector<T,?,Integer>summingInt(ToIntFunction<? super T> mapper)
+
+产生一个收集器，对将mapper应用到收集的元素上之后产生的值计算总和
+
+static<T>Collector<T,?,Optional<T>> minBy(Comparator<? super T> comparator)
+
+产生一个收集器，使用comparator指定排序的方法，计算收集到的元素的极值
+
+static <T,U,A,R> Collector<T,?,R> mapping(Function<? super T,? extends U>mapper,Collector<? super U,A,R>downstream)
+
+产生一个收集器，产生一个子映射表，其键值是将mapper应用到收集到的数据上而产生的，其值是使用downstream收集器收集到的具有相同键的元素
+
+##reduce方法
+
+reduce方法是一种从流中计算某个值的通用机制
+
+reduce（op（v0,v1））
+
+ intege xxx =   stream().reduce((x,y)->x+y) = 就是流中v0+v1+v2....
+
+当流的为空时会返回一个optional
+
+reduce(0,(x,y)->x+y)会返回一个0值
+
+reduce(提供者,累计器,组合器)
+
+int result = words.reduce(0,(total,word)->total+word.length(),(total1,total2)->total1+total2)
+
 
 
 

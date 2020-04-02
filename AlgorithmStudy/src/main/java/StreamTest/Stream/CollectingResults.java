@@ -72,10 +72,16 @@ public class CollectingResults {
 
             TreeSet<String>noVowelTreeSet = noVowels().collect(Collectors.toCollection(TreeSet::new));
             show("noVowelTreeSet",noVowelTreeSet);
+
+
             String result = noVowels().collect(Collectors.joining());
             System.out.println("Joining:" + result);
+
+
             result= noVowels().limit(10).collect(Collectors.joining(","));
             System.out.println("Joining with comms" + result);
+
+
         }catch (IOException e){
             e.printStackTrace();
         }
