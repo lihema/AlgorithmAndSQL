@@ -1,4 +1,6 @@
 # Git原理及使用方法
+
+https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
 版本控制 主动提交 中央仓库 构成版本控制VCS核心
 
 中央式版本控制系统
@@ -55,8 +57,8 @@ git rebase -i HARD^^/~~ ：选取到某一次commit 进行操作，直接更改�
 
 git reset --hard HEAD^/commit名 :往回退1个  ^的个数指退几个 ~是前进几个，commit名直接，多用于删除一串commit
  
-git revert 分支名
-
+git revert `[commit]`
+分支名新建一个commit，用来撤销指定commit,后者的所有变化都将被前者抵消，并且应用到当前分支
 
 ###Git原理
 Head 永远指向当前工作目录所对应的最新一次commit，一个引用，远程仓库的head永远指向master分支

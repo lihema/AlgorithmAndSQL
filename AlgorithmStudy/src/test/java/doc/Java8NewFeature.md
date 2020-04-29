@@ -36,8 +36,12 @@
 
 2.Stream.empty()创建一个不包含任何元素的流
 
-3.Stream.generate(Supplier<T> s)产生一个无限流，它的值是通过反复调用函数S构建的，Supplier<T> s是一个无需参数的函数式接口，
-类似于一个承载方法的容器，使用get()方法就会执行一次函数[Supplier用来创建]
+3.Stream.generate(Supplier<T>
+s)产生一个无限流，它的值是通过反复调用函数S构建的，Supplier<T>
+s是一个无需参数的函数式接口， 类似于一个承载方法的容器，使用get()方法就会执行一次函数
+````
+[Supplier用来创建]
+````
 
 Stream.generate(()->"lijishu");
 
@@ -92,7 +96,10 @@ Optional<T> findAny()
 
 分别产生这个流的第一个和任意一个元素，如果这个流为空，会产生一个空的Optional对象
 
-boolean anyMatch(Predicate<? super T> predicate) [predicate 一个匹配条件]
+boolean anyMatch(Predicate<? super T> predicate)
+```
+[predicate 一个匹配条件]
+```
 
 boolean allMatch(Predicate<? super T> predicate)
 
