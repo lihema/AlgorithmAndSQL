@@ -132,7 +132,60 @@ has-a解决抽象问题
 而且在将来需求发生变化的时候，仍然能够在不破坏原有代码设计的情况下灵活应对。
 
 何时定义为接口：
+1.实现类必须有扩展的需求
+2.从整体系统上看系统不太稳定，需要不断升级
 
+解决接口实现问题使用多态可以使用 配置文件+反射+工厂模式
+
+
+1、简单工厂方法
+ImageStore imageStore = ImageStoreFactory.newInstance(SOTRE_TYPE_CONFIG);
+config文件可以写类似properties的文件，使用key-value存储。
+
+缺点：再新增另一种存储手段时，需要修改工厂类和添加新的类。修改工厂类，违反了开放-封闭原则。
+
+那有没有更好一点的方法呢？
+
+2、使用反射。
+在配置文件中定义需要的image store类型。
+在ProcessJob中
+ImageStore store = (ImageStore) Class.forName(STORE_CLASS)
+    .newInstance();
+
+缺点：使用反射，在大量创建对象时会有性能损失。
+
+````
+### 多用组合少用继承
+````
+组合：用接口实现，一个接口放一个功能，一个对象可以实现多个接口达到组合的效果
+
+public interface Flyable {
+  void fly();
+}
+public interface Tweetable {
+  void tweet();
+}
+public interface EggLayable {
+  void layEgg();
+}
+public class Ostrich implements Tweetable, EggLayable {//鸵鸟
+  //... 省略其他属性和方法...
+  @Override
+  public void tweet() { //... }
+  @Override
+  public void layEgg() { //... }
+}
+public class Sparrow impelents Flayable, Tweetable, EggLayable {//麻雀
+  //... 省略其他属性和方法...
+  @Override
+  public void fly() { //... }
+  @Override
+  public void tweet() { //... }
+  @Override
+  public void layEgg() { //... }
+}
+
+继承：
 ````
 
 
