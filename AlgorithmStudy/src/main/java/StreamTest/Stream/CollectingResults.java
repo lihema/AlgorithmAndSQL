@@ -94,6 +94,7 @@ public class CollectingResults {
         System.out.println("foreach");
         noVowels().limit(10).forEach(System.out::println);
 
+
     }
 
 }

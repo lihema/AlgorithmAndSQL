@@ -1,0 +1,23 @@
+@startuml
+title ClickHouse发展过程
+start
+:MySql时期;
+note right
+* 使用MyISAM表引擎，不支持事务，但是在分析场景中有优势
+* 数据量大有瓶颈，B+树造成过多的磁盘碎片，查询速度慢
+end note
+:Metrage;
+note left
+*使用Key-Value模型
+*它使用LSM树代替了B+树，由实时查询的方式改为了预处理的方式，提前进行聚合
+*但是数据预处理会造成数据量的爆炸增长，只能使用固定的聚合结果
+end note
+:OLAPServer;
+note right
+*将数据分为索引文件和数据文件，索引使用LSM树用到的稀疏索引，段内数据有序，借助数据段锁定数据段
+*引入列式存储思想，将索引文件和数据文件按照列字段的粒度进行拆分，每个字段独立存储
+*只有一个数据类型，没有DBMS应有的功能
+end note
+:ClickHouse;
+end
+@enduml

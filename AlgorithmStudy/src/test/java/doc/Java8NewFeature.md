@@ -92,7 +92,7 @@ Optional<T> min(Comparator<? super T> comparator)
 
 Optional<T> findFirst()
 
-Optional<T> findAny()
+Optional<T> find()
 
 分别产生这个流的第一个和任意一个元素，如果这个流为空，会产生一个空的Optional对象
 
@@ -264,7 +264,16 @@ reduce(提供者,累计器,组合器)
 int result = words.reduce(0,(total,word)->total+word.length(),(total1,total2)->total1+total2)
 
 
+````
+函数式方法：
+Function<T, R>  用于指代get方法 T为参数对象类型，R为返回值类型 accpet执行所传函数
 
+BiConsumer<T,R>是一个函数式接口。它可以接受两个参数，没有返回值 accpet执行所传函数
+
+BiConsumer<Integer, Integer> addTwo = (x, y) -> System.out.println(x + y);
+      addTwo.accept(1, 2);    // 3  
+
+````
 
 
 

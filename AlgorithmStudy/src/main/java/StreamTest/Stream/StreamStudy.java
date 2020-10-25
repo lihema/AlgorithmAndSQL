@@ -82,7 +82,8 @@ public class StreamStudy {
             //streamTest.countSku();
            List<String> initStringData = streamTest.initStringData();
             Optional<String> largest = initStringData.stream().max(String::compareToIgnoreCase);
-           // System.out.println(largest);
+
+            // System.out.println(largest);
 
             Optional<String> startWithQ = initStringData.stream().filter(s -> s.startsWith("Q")).findFirst();
 
